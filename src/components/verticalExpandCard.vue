@@ -88,7 +88,7 @@ function handleMouseEnter(index) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-between; */
+  transition: opacity 0.3s ease-in-out;
 }
 
 .active .card-content {

@@ -5,7 +5,6 @@
       <p class="primary-title">各类场景难题和对应解决方案</p>
     </div>
     <solutionTitleBanner :titles="titles" @switch="handleSwitch"></solutionTitleBanner>
-    <!-- <solutionItemBanner :items="items"></solutionItemBanner> -->
     <solutionItemBanner :items="items1" v-show="activeIndex === 0"></solutionItemBanner>
     <solutionItemBanner :items="items2" v-show="activeIndex === 1"></solutionItemBanner>
     <solutionItemBanner :items="items3" v-show="activeIndex === 2"></solutionItemBanner>
@@ -14,7 +13,6 @@
     <div class="title-container secondary-container">
       <p class="secondary-title">钉钉10年间与客户共创，沉淀优秀企业<span class="highlight">开会</span>解决方案与你分享</p>
     </div>
-    <!-- <horizontalExpandCard :cards="cards1"></horizontalExpandCard> -->
     <horizontalExpandCard :cards="cards11" v-show="activeIndex === 0"></horizontalExpandCard>
     <horizontalExpandCard :cards="cards12" v-show="activeIndex === 1"></horizontalExpandCard>
     <horizontalExpandCard :cards="cards13" v-show="activeIndex === 2"></horizontalExpandCard>
@@ -23,7 +21,6 @@
     <div class="title-container secondary-container">
       <p class="secondary-title">这些优秀企业都在用钉钉<span class="highlight">开好一场会</span></p>
     </div>
-    <!-- <horizontalExpandCard2 :cards="cards2"></horizontalExpandCard2> -->
     <horizontalExpandCard2 :cards="cards21" v-show="activeIndex === 0"></horizontalExpandCard2>
     <horizontalExpandCard2 :cards="cards22" v-show="activeIndex === 1"></horizontalExpandCard2>
     <horizontalExpandCard2 :cards="cards23" v-show="activeIndex === 2"></horizontalExpandCard2>
