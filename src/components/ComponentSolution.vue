@@ -257,12 +257,12 @@ const cards21 = [
     bgImg: '/dingTalkImgs/DM_20250429102859_414.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_229.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_229.PNG',
     content: '长城汽车：规划到执行，确保集团方针落地',
     bgImg: '/dingTalkImgs/DM_20250429102859_415.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_230.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_230.PNG',
     content: '东呈集团：战略闭环，有力支撑组织管理数智化',
     bgImg: '/dingTalkImgs/DM_20250429102859_416.JPEG',
   },
@@ -274,12 +274,12 @@ const cards22 = [
     bgImg: '/dingTalkImgs/DM_20250429102859_417.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_234.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_234.PNG',
     content: '小铁科技：目标公开透明，协作更顺畅',
     bgImg: '/dingTalkImgs/DM_20250429102859_418.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_235.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_235.PNG',
     content: '青岛迈金：互相拉通目标，让创新落地',
     bgImg: '/dingTalkImgs/DM_20250429102859_419.JPEG',
   },
@@ -291,12 +291,12 @@ const cards23 = [
     bgImg: '/dingTalkImgs/DM_20250429102859_420.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_239.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_239.PNG',
     content: '佳沃集团：知识库驱动组织创新加速',
     bgImg: '/dingTalkImgs/DM_20250429102859_421.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_240.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_240.PNG',
     content: '云南白药：构建知识库AI助理提升咨询服务',
     bgImg: '/dingTalkImgs/DM_20250429102859_422.JPEG',
   },
@@ -308,12 +308,12 @@ const cards24 = [
     bgImg: '/dingTalkImgs/DM_20250429102859_423.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_246.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_246.PNG',
     content: '武汉精测电子：检测龙头企业的协同提效变革',
     bgImg: '/dingTalkImgs/DM_20250429102859_424.PNG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_247.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_247.PNG',
     content: '柒牌：品牌零售的项目数字化转型',
     bgImg: '/dingTalkImgs/DM_20250429102859_425.JPEG',
   },
@@ -325,12 +325,12 @@ const cards25 = [
     bgImg: '/dingTalkImgs/DM_20250429102859_426.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_253.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_253.PNG',
     content: '哈啰出行：钉钉会议助力企业文化沉淀',
     bgImg: '/dingTalkImgs/DM_20250429102859_427.JPEG',
   },
   {
-    title: 'dingTalkImgs/DM_20250429102859_254.PNG',
+    title: '/dingTalkImgs/DM_20250429102859_254.PNG',
     content: '浙江大学：10万师生在线的网上大学',
     bgImg: '/dingTalkImgs/DM_20250429102859_428.JPEG',
   },

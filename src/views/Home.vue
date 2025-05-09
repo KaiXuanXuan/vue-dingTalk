@@ -59,7 +59,7 @@ function handleScroll() {
   const header = headerRef.value.$el;
   const navbar = navbarRef.value.$el;
   const navbarTop = navbar.getBoundingClientRect().top;
-  console.log(navbarTop);
+  // console.log(navbarTop);
   if (navbarTop <= 60) {
     header.style.opacity = '0';
     navbar.style.top = '0';
