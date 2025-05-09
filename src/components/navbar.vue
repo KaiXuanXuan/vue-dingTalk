@@ -12,17 +12,31 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 const navItemsRef = ref(null);
 const activeOverlay = ref(null);
 const navItemList = ref([]);
+const currentIndex = ref(0);
 
+const props = defineProps({
+  scrollIndex: {
+    type: Number,
+    default: 0,
+  },
+});
 const emits = defineEmits(['changeNavIndex']);
 
 onMounted(() => {
   navItemList.value = navItemsRef.value.querySelectorAll('.nav-item');
   init();
 });
+
+watch(
+  () => props.scrollIndex,
+  (newIndex) => {
+    updateActiveState(newIndex);
+  }
+);
 
 function init() {
   updateOverlay(navItemList.value[0]);
@@ -46,8 +60,21 @@ function handleNavItemClick(e) {
   updateOverlay(target);
 
   const activeIndex = Array.from(navItemList.value).indexOf(target);
+  currentIndex.value = activeIndex;
   emits('changeNavIndex', activeIndex);
 }
+
+const updateActiveState = (index) => {
+  if (index === currentIndex.value) return;
+
+  const navItem = navItemList.value[index];
+  navItemList.value.forEach((nav) => nav.classList.remove('active'));
+  const target = navItemList.value[index];
+  target.classList.add('active');
+  updateOverlay(target);
+
+  currentIndex.value = index;
+};
 </script>
 <style scoped>
 .navbar-container {

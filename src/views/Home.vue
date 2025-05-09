@@ -1,18 +1,18 @@
 <template>
-  <div class="home-container" @scroll="throttledHandleScroll">
+  <div class="home-container" ref="homeRef" @scrollend="throttledHandleScroll">
     <component-header class="header" ref="headerRef"></component-header>
     <component-slick-banner></component-slick-banner>
-    <navbar class="sticky" ref="navbarRef" @changeNavIndex="handleChangeNavIndex"></navbar>
+    <navbar class="sticky" ref="navbarRef" @changeNavIndex="handleChangeNavIndex" :scrollIndex="scrollIndex"></navbar>
     <!-- 产品与功能介绍 -->
-    <component-carousel ref="carouselRef"></component-carousel>
-    <component-product></component-product>
+    <component-carousel ref="carouselRef" class="section-item"></component-carousel>
+    <component-product ref="productRef"></component-product>
     <!-- 解决方案与案例 -->
-    <component-solution ref="solutionRef"></component-solution>
-    <component-usage></component-usage>
+    <component-solution ref="solutionRef" class="section-item"></component-solution>
+    <component-usage ref="usageRef"></component-usage>
     <!-- 升级钉钉 -->
-    <component-upgrade ref="upgradeRef"></component-upgrade>
+    <component-upgrade ref="upgradeRef" class="section-item"></component-upgrade>
     <!-- 钉钉服务与安全 -->
-    <component-security ref="securityRef"></component-security>
+    <component-security ref="securityRef" class="section-item"></component-security>
     <component-footer></component-footer>
   </div>
 </template>
@@ -33,13 +33,14 @@ const homeRef = ref(null);
 const headerRef = ref(null);
 const navbarRef = ref(null);
 const carouselRef = ref(null);
+const productRef = ref(null);
 const solutionRef = ref(null);
+const usageRef = ref(null);
 const upgradeRef = ref(null);
 const securityRef = ref(null);
+const scrollIndex = ref(0);
+// const banInput =ref(false);
 
-onMounted(()=>{
-  window.addEventListener('scroll', throttledHandleScroll);
-})
 // 节流
 function throttle(func, delay) {
   let timer = null;
@@ -56,10 +57,12 @@ function throttle(func, delay) {
 }
 
 function handleScroll() {
+  if (!headerRef.value || !navbarRef.value) return;
+
+  // 滚动到一定位置隐藏header的逻辑
   const header = headerRef.value.$el;
   const navbar = navbarRef.value.$el;
   const navbarTop = navbar.getBoundingClientRect().top;
-  // console.log(navbarTop);
   if (navbarTop <= 60) {
     header.style.opacity = '0';
     navbar.style.top = '0';
@@ -67,24 +70,67 @@ function handleScroll() {
     header.style.opacity = '1';
     navbar.style.top = '60px';
   }
+
+  const index = getScrollIndex();
+  if (index === scrollIndex.value) return; // 防止重复传入
+  scrollIndex.value = index;
+}
+
+function getScrollIndex() {
+  if (isOverlapping(navbarRef.value.$el, securityRef.value.$el)) {
+    return 3;
+  }
+  if (isOverlapping(navbarRef.value.$el, upgradeRef.value.$el)) {
+    return 2;
+  }
+  if (isOverlapping(navbarRef.value.$el, solutionRef.value.$el)) {
+    return 1;
+  }
+  return 0;
+}
+
+function isOverlapping(element1, element2) {
+  return element1.getBoundingClientRect().top + 65 >= element2.getBoundingClientRect().top; // + 65 来实现覆盖检测
+  //  return element1.getBoundingClientRect().top >= element2.getBoundingClientRect().top
 }
 
 const throttledHandleScroll = throttle(handleScroll, 100);
 
-function handleChangeNavIndex(index){
+function handleChangeNavIndex(index) {
+  const container = homeRef.value; // 获取容器元素引用
+  let targetElement = null;
+
   switch (index) {
     case 0:
-      carouselRef.value.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetElement = carouselRef.value.$el;
       break;
     case 1:
-      solutionRef.value.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetElement = solutionRef.value.$el;
       break;
     case 2:
-      upgradeRef.value.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetElement = upgradeRef.value.$el;
       break;
     case 3:
-      securityRef.value.$el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      targetElement = securityRef.value.$el;
       break;
+  }
+
+  if (targetElement && container) {
+    // 计算元素相对于容器的位置
+    const elementRect = targetElement.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    // 计算元素在容器坐标系中的位置（需考虑容器当前滚动位置）
+    const relativeTop = elementRect.top - containerRect.top + container.scrollTop;
+
+    // 计算最终滚动位置并应用偏移
+    const targetScrollTop = relativeTop - 60;
+
+    // 使用容器的滚动方法
+    container.scrollTo({
+      top: targetScrollTop,
+      behavior: 'smooth',
+    });
   }
 }
 </script>
