@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" ref="homeRef" @scrollend="throttledHandleScroll">
+  <div class="home-container" ref="homeRef" @scroll="throttledHandleScroll" @scrollend="handleScrollEnd">
     <component-header class="header" ref="headerRef"></component-header>
     <component-slick-banner></component-slick-banner>
     <navbar class="sticky" ref="navbarRef" @changeNavIndex="handleChangeNavIndex" :scrollIndex="scrollIndex"></navbar>
@@ -39,7 +39,7 @@ const usageRef = ref(null);
 const upgradeRef = ref(null);
 const securityRef = ref(null);
 const scrollIndex = ref(0);
-// const banInput =ref(false);
+const banInput =ref(false);
 
 // 节流
 function throttle(func, delay) {
@@ -72,8 +72,12 @@ function handleScroll() {
   }
 
   const index = getScrollIndex();
-  if (index === scrollIndex.value) return; // 防止重复传入
+  if (index === scrollIndex.value || banInput.value) return; // 防止重复传入
   scrollIndex.value = index;
+}
+
+function handleScrollEnd() {
+  banInput.value = false;
 }
 
 function getScrollIndex() {
@@ -127,6 +131,7 @@ function handleChangeNavIndex(index) {
     const targetScrollTop = relativeTop - 60;
 
     // 使用容器的滚动方法
+    banInput.value = true;
     container.scrollTo({
       top: targetScrollTop,
       behavior: 'smooth',
