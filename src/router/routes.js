@@ -12,7 +12,7 @@ const routes = [
     name: 'home',
     component: () => import('@/views/Home.vue'),
     meta: {
-      title: '首页',
+      title: '钉钉，让进步发生！AI时代，实现团队协同方式和企业经营管理的持续进步',
     },
   },
  ]
